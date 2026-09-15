@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Gift, RotateCcw, Share2, Sparkles } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import portraitAsset from "@/assets/jumoke-portrait.jpeg.asset.json";
+import jumokeCutout from "@/assets/jumoke-cutout.png";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
@@ -209,8 +209,8 @@ function FloorCard({ index, floor, onBack, onNext, onTouchStart, onTouchEnd }: {
       </header>
 
       <article className="tribute-card" key={index}>
-        <div className="photo-panel">
-          <img src={portraitAsset.url} alt="Jumoke smiling in an elegant white dress" draggable={false} />
+        <div className={`photo-panel palette-${index % 7} portrait-${index % 5}`}>
+          <img src={jumokeCutout} alt="Jumoke smiling in an elegant white dress" draggable={false} />
           <Doodle type={doodle} />
           <span className="photo-number">{String(index + 1).padStart(2, "0")}</span>
           <span className="photo-caption">Thirty five looks good on you</span>
@@ -218,7 +218,6 @@ function FloorCard({ index, floor, onBack, onNext, onTouchStart, onTouchEnd }: {
         <div className="word-panel">
           <p className="floor-label">Floor {String(index + 1).padStart(2, "0")}</p>
           <h2>{floor.word}</h2>
-          <p className="word-kind">({floor.kind})</p>
           <span className="gold-rule" />
           <p className="definition">{floor.definition}</p>
           <p className="signature">This is so you, Jumoke ♡</p>

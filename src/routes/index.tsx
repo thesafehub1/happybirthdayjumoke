@@ -126,6 +126,10 @@ function BirthdayExperience() {
     }
   };
 
+  const currentFloor = floors[floor];
+
+  if (!currentFloor) return null;
+
   return (
     <main className="birthday-shell">
       <SparkleField />
@@ -135,7 +139,7 @@ function BirthdayExperience() {
       {screen === "floors" && (
         <FloorCard
           index={floor}
-          floor={floors[floor]}
+          floor={currentFloor}
           onBack={back}
           onNext={next}
           onTouchStart={(x) => { touchStart.current = x; }}
@@ -181,12 +185,18 @@ function FloorCard({ index, floor, onBack, onNext, onTouchStart, onTouchEnd }: {
   onTouchStart: (x: number) => void;
   onTouchEnd: (x: number) => void;
 }) {
-  const doodle = doodles[index % doodles.length];
+  const doodle = doodles[index % doodles.length] ?? "stars";
   return (
     <section
       className="floor-view"
-      onTouchStart={(event) => onTouchStart(event.changedTouches[0].clientX)}
-      onTouchEnd={(event) => onTouchEnd(event.changedTouches[0].clientX)}
+      onTouchStart={(event) => {
+        const touch = event.changedTouches.item(0);
+        if (touch) onTouchStart(touch.clientX);
+      }}
+      onTouchEnd={(event) => {
+        const touch = event.changedTouches.item(0);
+        if (touch) onTouchEnd(touch.clientX);
+      }}
       aria-live="polite"
     >
       <header className="journey-header">

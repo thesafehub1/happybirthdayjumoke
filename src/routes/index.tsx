@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Gift, RotateCcw, Share2, Sparkles } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import jumokePortraitCrop from "@/assets/jumoke-portrait-crop.png";
+import jumokePortrait from "@/assets/jumoke-cutout.png";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
@@ -66,6 +66,44 @@ const floors: Floor[] = [
 ];
 
 const doodles = ["crown", "glasses", "hearts", "flowers", "stars", "toast", "party"] as const;
+
+const floorHeadlines = [
+  "Radiant from head to toe",
+  "An icon in every frame",
+  "Soft life looks good on her",
+  "Grace built on resilience",
+  "They call her Bougie",
+  "The friend who always shows up",
+  "Truth, served with love",
+  "Every move has meaning",
+  "Glamour comes naturally",
+  "Steady through every season",
+  "Meet the everyday Shero",
+  "Floor 12: Pure Vibes",
+  "Our Empress at a glance",
+  "Loyalty with a heartbeat",
+  "Nothing can stop her now",
+  "A heart that keeps giving",
+  "The side-eye says it all",
+  "35 shades of Magnetic",
+  "Courage wears her smile",
+  "Where calm finds a home",
+  "The runway follows her",
+  "Wisdom worth writing down",
+  "Beautifully, boldly herself",
+  "She gets it and glows",
+  "More sister than friend",
+  "Peace is her luxury",
+  "Your loudest cheerleader",
+  "Poise in every chapter",
+  "She knows what belongs",
+  "Love lives in the details",
+  "Fearless looks like this",
+  "Some beauty is Timeless",
+  "Joy follows wherever she goes",
+  "A blessing in human form",
+  "There is only one Jumoke",
+] as const;
 
 function BirthdayExperience() {
   const [screen, setScreen] = useState<"lobby" | "floors" | "letter">("lobby");
@@ -164,8 +202,15 @@ function Lobby({ onOpen }: { onOpen: () => void }) {
       <p className="floor-mark">35</p>
       <h1 id="birthday-title">Happy Birthday<br /><em>Jumoke!</em></h1>
       <p className="welcome-line">Welcome to the 35th Floor</p>
+      <div className="lobby-portrait-wrap">
+        <div className="lobby-portrait-ring">
+          <img src={jumokePortrait} alt="Jumoke, the birthday queen" />
+        </div>
+        <span>Birthday Queen</span>
+      </div>
       <button className="gift" onClick={onOpen} aria-label="Open Jumoke's birthday gift">
         <span className="gift-glow" />
+        <span className="gift-side" />
         <span className="gift-lid"><span className="gift-bow gift-bow-left" /><span className="gift-bow gift-bow-right" /><span className="gift-knot" /></span>
         <span className="gift-box"><span className="gift-ribbon" /></span>
       </button>
@@ -208,16 +253,20 @@ function FloorCard({ index, floor, onBack, onNext, onTouchStart, onTouchEnd }: {
         <Sparkles aria-hidden="true" />
       </header>
 
-      <article className="tribute-card" key={index}>
+      <article className={`tribute-card ${index % 2 === 0 ? "portrait-right" : "portrait-left"}`} key={index}>
         <div className="photo-panel">
-          <img src={jumokePortraitCrop} alt="Jumoke smiling in an elegant white dress" draggable={false} />
+          <div className="portrait-glow" aria-hidden="true" />
+          <img src={jumokePortrait} alt="Jumoke smiling in an elegant white dress" draggable={false} />
           <Doodle type={doodle} />
           <span className="photo-number">{String(index + 1).padStart(2, "0")}</span>
           <span className="photo-caption">Thirty five looks good on you</span>
         </div>
         <div className="word-panel">
           <p className="floor-label">Floor {String(index + 1).padStart(2, "0")}</p>
-          <h2>{floor.word}</h2>
+          <p className="card-headline">{floorHeadlines[index]}</p>
+          <h2 className={floor.word.length > 14 ? "word-extra-long" : floor.word.length > 10 ? "word-long" : undefined}>
+            {floor.word === "Soft Life Ambassador" ? <><span>Soft Life</span><span>Ambassador</span></> : floor.word}
+          </h2>
           <span className="gold-rule" />
           <p className="definition">{floor.definition}</p>
           <p className="signature">This is so you, Jumoke ♡</p>

@@ -105,6 +105,44 @@ const floorHeadlines = [
   "There is only one Jumoke",
 ] as const;
 
+const floorSignoffs = [
+  "This is so you, Jumoke ♡",
+  "So effortlessly you ✦",
+  "Crown polished, per usual ♡",
+  "You, in a single word ♡",
+  "Exactly our Jumoke ✦",
+  "Certified Jumoke behavior ♡",
+  "Reads just like you ✧",
+  "Who else but you ♡",
+  "It is giving Jumoke ✦",
+  "Our safe place, always ♡",
+  "Superhero, but make it you ✦",
+  "Vibes on arrival ♡",
+  "Her crown does not tilt ♡",
+  "Covered, always ♡",
+  "Runway cleared for you ✦",
+  "Given with both hands ♡",
+  "One look says it all ✧",
+  "Naturally magnetic, naturally you ♡",
+  "Brave looks good on you ✦",
+  "Calm feels like you ♡",
+  "Serving looks as always ♡",
+  "Notes app, immediately ✧",
+  "Real recognizes real ♡",
+  "Glow on, glow up ✦",
+  "Bonded for life ♡",
+  "Peace looks precious on you ✧",
+  "Loudest cheer, always ♡",
+  "Poised through it all ✦",
+  "You know, you always know ♡",
+  "Love lives in your details ✧",
+  "Space taken, boldly ♡",
+  "Fine wine, indeed ♡",
+  "Dance through the Tuesday ✦",
+  "Proof prayers work ♡",
+  "One of one, always ♡",
+] as const;
+
 function BirthdayExperience() {
   const [screen, setScreen] = useState<"lobby" | "floors" | "letter">("lobby");
   const [floor, setFloor] = useState(0);
@@ -269,7 +307,7 @@ function FloorCard({ index, floor, onBack, onNext, onTouchStart, onTouchEnd }: {
           </h2>
           <span className="gold-rule" />
           <p className="definition">{floor.definition}</p>
-          <p className="signature">This is so you, Jumoke ♡</p>
+          <p className="signature">{floorSignoffs[index]}</p>
         </div>
       </article>
 

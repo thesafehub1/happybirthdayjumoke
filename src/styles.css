@@ -240,8 +240,29 @@ p, h1, h2, blockquote, button, span { hyphens: none; word-break: keep-all; overf
   .word-panel { min-height: 250px; padding-block: 22px; }
   .word-panel h2 { font-size: 35px; }
   .definition { font-size: 14px; }
-  .signature { display: none; }
+  .signature { display: block; margin-top: 12px; font-size: 12.5px; }
   .gold-rule { margin: 11px auto; }
+}
+
+@media (max-height: 620px) {
+  .lobby-view { padding: 18px 18px 22px; }
+  .lobby-view h1 { margin: 10px 0 2px; font-size: clamp(34px, 7vw, 52px); }
+  .welcome-line { margin: 7px 0 10px; font-size: 17px; }
+  .floor-mark { font-size: min(62vw, 300px); }
+  .lobby-portrait-ring { width: 66px; height: 66px; }
+  .lobby-portrait-wrap > span { font-size: 7px; padding: 3px 9px; }
+  .gift { width: 118px; height: 100px; margin-bottom: 8px; }
+  .gift-box { height: 64px; left: 13px; right: 15px; }
+  .gift-lid { top: 20px; height: 22px; left: 6px; right: 7px; }
+  .gift-side { height: 58px; width: 13px; }
+  .gift-bow { top: -21px; width: 32px; height: 26px; border-width: 7px; }
+  .gift-knot { top: -13px; width: 18px; height: 18px; }
+  .tiny-note { margin-top: 10px; }
+}
+
+@media (min-width: 1100px) {
+  .tribute-card { max-width: 940px; }
+  .journey-header { max-width: 940px; }
 }
 
 @media (max-width: 390px) {
@@ -249,6 +270,7 @@ p, h1, h2, blockquote, button, span { hyphens: none; word-break: keep-all; overf
   .word-panel h2.word-long { font-size: 34px; }
   .word-panel h2.word-extra-long { font-size: 29px; }
 }
+
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
